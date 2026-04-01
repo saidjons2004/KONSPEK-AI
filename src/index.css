@@ -1,0 +1,337 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Indie+Flower&family=Shadows+Into+Light&family=Gloria+Hallelujah&family=Architects+Daughter&family=Permanent+Marker&family=Patrick+Hand&family=Kalam&family=Amatic+SC&family=Handlee&family=Reenie+Beanie&family=Nothing+You+Could+Do&family=Homemade+Apple&family=Cedarville+Cursive&family=Nanum+Pen+Script&family=Zeyada&family=Waiting+for+the+Sunrise&family=Just+Me+Again+Down+Here&family=Delius&family=Gochi+Hand&family=Covered+By+Your+Grace&family=Bad+Script&family=Marck+Script&family=La+Belle+Aurore&family=Coming+Soon&family=Loved+by+the+King&family=Over+the+Rainbow&family=Dancing+Script&family=Great+Vibes&display=swap');
+
+@theme {
+  --font-caveat: "Caveat", cursive;
+  --font-indie: "Indie Flower", cursive;
+  --font-shadows: "Shadows Into Light", cursive;
+  --font-gloria: "Gloria Hallelujah", cursive;
+  --font-architects: "Architects Daughter", cursive;
+  --font-marker: "Permanent Marker", cursive;
+  --font-patrick: "Patrick Hand", cursive;
+  --font-kalam: "Kalam", cursive;
+  --font-amatic: "Amatic SC", cursive;
+  --font-handlee: "Handlee", cursive;
+  --font-reenie: "Reenie Beanie", cursive;
+  --font-nothing: "Nothing You Could Do", cursive;
+  --font-homemade: "Homemade Apple", cursive;
+  --font-cedarville: "Cedarville Cursive", cursive;
+  --font-nanum: "Nanum Pen Script", cursive;
+  --font-zeyada: "Zeyada", cursive;
+  --font-waiting: "Waiting for the Sunrise", cursive;
+  --font-justme: "Just Me Again Down Here", cursive;
+  --font-delius: "Delius", cursive;
+  --font-gochi: "Gochi Hand", cursive;
+  --font-covered: "Covered By Your Grace", cursive;
+  --font-badscript: "Bad Script", cursive;
+  --font-marck: "Marck Script", cursive;
+  --font-labelle: "La Belle Aurore", cursive;
+  --font-comingsoon: "Coming Soon", cursive;
+  --font-lovedbyking: "Loved by the King", cursive;
+  --font-overrainbow: "Over the Rainbow", cursive;
+  --font-dancing: "Dancing Script", cursive;
+  --font-greatvibes: "Great Vibes", cursive;
+
+  /* Override colors to HEX to avoid oklch issues with html2pdf/html2canvas */
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-400: #9ca3af;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-red-50: #fef2f2;
+  --color-red-200: #fecaca;
+  --color-red-500: #ef4444;
+  --color-red-300: #fca5a5;
+}
+
+@layer base {
+  .notebook-page {
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    min-height: 29.7cm;
+    width: 21cm;
+    margin: 0 auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notebook-page.chiziqli {
+    background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 100% 2rem;
+  }
+
+  .notebook-page.katakli {
+    background-image: 
+      linear-gradient(#e5e7eb 1px, transparent 1px),
+      linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+    background-size: 2rem 2rem;
+  }
+
+  .notebook-page.panjarali {
+    background-image: 
+      radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 2rem 2rem;
+  }
+
+  .notebook-page > div {
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .handwriting-enhanced {
+    transform: rotate(-0.05deg);
+    letter-spacing: -0.01em;
+  }
+
+  .notebook-page.margin-left > div {
+    padding: 0 2rem 0 5.5rem;
+  }
+
+  .notebook-page.margin-right > div {
+    padding: 0 5.5rem 0 2rem;
+  }
+
+  .notebook-page > div:first-child {
+    padding-top: 2rem;
+  }
+
+  .notebook-page > div:last-child {
+    padding-bottom: 2rem;
+  }
+
+  .notebook-page.margin-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 4.5rem;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--color-red-300);
+    z-index: 10;
+  }
+
+  .notebook-page.margin-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 4.5rem;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--color-red-300);
+    z-index: 10;
+  }
+
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    #printable-area, #printable-area * {
+      visibility: visible;
+    }
+    #printable-area {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+    .no-print {
+      display: none !important;
+    }
+  }
+
+  /* Liquid Glass UI Styles */
+  .glass-container {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.07),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .glass-button {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  .glass-button-primary {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(37, 99, 235, 0.9));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+  }
+
+  .glass-button-primary:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 1));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .glass-input {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .glass-input:focus {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Dark Mode Liquid Glass UI Styles */
+  .dark {
+    background-color: #0f1115;
+    color: #ffffff;
+  }
+
+  .dark .glass-container {
+    background: rgba(15, 17, 21, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .dark .glass-card {
+    background: rgba(20, 22, 28, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .dark .glass-nav {
+    background: rgba(15, 17, 21, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .dark .glass-input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  .dark .glass-input:focus {
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Liquid Glass Buttons */
+  .dark .glass-button {
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      inset 0 1px 1px rgba(255, 255, 255, 0.2),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.5);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dark .glass-button::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent 40%, transparent 60%, rgba(255,255,255,0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .dark .glass-button:hover {
+    background: linear-gradient(180deg, rgba(40, 40, 40, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+    box-shadow: 
+      inset 0 1px 1px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.5),
+      0 6px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Primary Liquid Glass Button (Colorful) */
+  .dark .glass-button-primary {
+    background: linear-gradient(180deg, rgba(20, 20, 25, 0.9) 0%, rgba(5, 5, 10, 0.95) 100%);
+    border: none;
+    box-shadow: 
+      inset 0 2px 4px rgba(255, 255, 255, 0.1),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.8),
+      0 10px 20px -5px rgba(59, 130, 246, 0.4);
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+
+  .dark .glass-button-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, #00f2fe, #4facfe, #f093fb, #f5576c);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+    opacity: 0.8;
+  }
+  
+  .dark .glass-button-primary::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: linear-gradient(135deg, #00f2fe, #4facfe, #f093fb, #f5576c);
+    filter: blur(15px);
+    z-index: -2;
+    opacity: 0.3;
+    border-radius: inherit;
+    transition: opacity 0.3s ease;
+  }
+
+  .dark .glass-button-primary:hover {
+    background: linear-gradient(180deg, rgba(30, 30, 35, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+    transform: translateY(-1px);
+  }
+  
+  .dark .glass-button-primary:hover::after {
+    opacity: 0.5;
+  }
+}

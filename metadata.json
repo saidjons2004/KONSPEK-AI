@@ -1,0 +1,5 @@
+{
+  "name": "Konspek AI",
+  "description": "Mavzu yoki ovoz orqali qo'lda yozilgandek ko'rinadigan konspektlar yaratish uchun AI ilovasi.",
+  "requestFramePermissions": ["microphone"]
+}
